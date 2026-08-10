@@ -1,12 +1,825 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello World</title>
-  </head>
-  <body>
-    <h1>Hello World</h1>
-    <p>This site is hosted on GitHub Pages.</p>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A personal collection of focused, practical web tools." />
+  <meta name="theme-color" content="#242426" />
+  <title>Toolbox — Useful things, ready when needed</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --anthracite-950: #1d1d1f;
+      --anthracite-900: #242426;
+      --anthracite-800: #303033;
+      --anthracite-700: #444448;
+      --paper: #f4f3ef;
+      --paper-strong: #fffefa;
+      --muted: #737176;
+      --orange: #f06424;
+      --orange-dark: #c94610;
+      --orange-soft: #ffd6c2;
+      --line: rgba(36, 36, 38, 0.14);
+      --shadow: 0 20px 50px rgba(29, 29, 31, 0.12);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --content: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--anthracite-900);
+      background:
+        linear-gradient(rgba(36, 36, 38, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(36, 36, 38, 0.035) 1px, transparent 1px),
+        var(--paper);
+      background-size: 32px 32px;
+      font-family: "Manrope", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page-shell {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--content));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      z-index: 20;
+      top: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(36, 36, 38, 0.94);
+      color: #fff;
+      backdrop-filter: blur(16px);
+    }
+
+    .header-inner {
+      display: flex;
+      min-height: 72px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      position: relative;
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 11px;
+      background: var(--orange);
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 600;
+    }
+
+    .brand-mark::after {
+      position: absolute;
+      right: -8px;
+      bottom: -8px;
+      width: 22px;
+      height: 22px;
+      border: 4px solid var(--anthracite-900);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .brand-name {
+      font-size: 1.02rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-name span {
+      color: var(--orange-soft);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 12px;
+      color: #fff;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .nav-toggle svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .site-nav a {
+      padding: 10px 13px;
+      border-radius: 10px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 160ms ease, background-color 160ms ease;
+    }
+
+    .site-nav a:hover,
+    .site-nav a:focus-visible {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+      outline: none;
+    }
+
+    .site-nav .nav-cta {
+      margin-left: 8px;
+      color: var(--anthracite-950);
+      background: var(--orange);
+    }
+
+    .site-nav .nav-cta:hover,
+    .site-nav .nav-cta:focus-visible {
+      color: var(--anthracite-950);
+      background: #ff7b3e;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(70px, 11vw, 132px) 0 clamp(62px, 9vw, 112px);
+      color: #fff;
+      background: var(--anthracite-900);
+    }
+
+    .hero::before {
+      position: absolute;
+      inset: auto -10vw -42% auto;
+      width: min(62vw, 760px);
+      aspect-ratio: 1;
+      border: clamp(40px, 6vw, 86px) solid rgba(240, 100, 36, 0.92);
+      border-radius: 50%;
+      content: "";
+      transform: rotate(-12deg);
+    }
+
+    .hero::after {
+      position: absolute;
+      right: 7%;
+      bottom: -80px;
+      width: 22px;
+      height: 360px;
+      border-radius: 999px;
+      background: var(--orange);
+      box-shadow: 52px 0 0 rgba(240, 100, 36, 0.35), 104px 0 0 rgba(240, 100, 36, 0.12);
+      content: "";
+      transform: rotate(36deg);
+      transform-origin: bottom;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 810px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 22px;
+      color: var(--orange-soft);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 32px;
+      height: 3px;
+      border-radius: 99px;
+      background: var(--orange);
+      content: "";
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      font-weight: 800;
+      letter-spacing: -0.075em;
+      line-height: 0.88;
+    }
+
+    .hero h1 em {
+      color: var(--orange);
+      font-style: normal;
+    }
+
+    .hero-copy {
+      max-width: 610px;
+      margin: 30px 0 0;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: clamp(1rem, 1.5vw, 1.18rem);
+      line-height: 1.75;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 30px;
+      margin-top: 34px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .hero-meta li {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: rgba(255, 255, 255, 0.58);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.77rem;
+    }
+
+    .hero-meta li::before {
+      width: 7px;
+      height: 7px;
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .tools-section {
+      padding: clamp(68px, 9vw, 116px) 0;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 1fr minmax(260px, 420px);
+      align-items: end;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .section-kicker {
+      margin: 0 0 12px;
+      color: var(--orange-dark);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      letter-spacing: -0.055em;
+      line-height: 1;
+    }
+
+    .section-heading > p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .tool-card {
+      position: relative;
+      display: flex;
+      min-height: 300px;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 254, 250, 0.88);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset;
+      text-decoration: none;
+      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+    }
+
+    .tool-card:hover {
+      border-color: rgba(240, 100, 36, 0.5);
+      box-shadow: var(--shadow);
+      transform: translateY(-7px);
+    }
+
+    .tool-card:focus-visible {
+      outline: 4px solid rgba(240, 100, 36, 0.3);
+      outline-offset: 3px;
+    }
+
+    .tool-card::after {
+      position: absolute;
+      right: -60px;
+      bottom: -80px;
+      width: 180px;
+      height: 180px;
+      border: 26px solid rgba(240, 100, 36, 0.08);
+      border-radius: 50%;
+      content: "";
+      transition: transform 300ms ease, border-color 300ms ease;
+    }
+
+    .tool-card:hover::after {
+      border-color: rgba(240, 100, 36, 0.16);
+      transform: scale(1.12);
+    }
+
+    .tool-card.featured {
+      grid-column: span 2;
+      color: #fff;
+      background: var(--anthracite-900);
+    }
+
+    .tool-card.featured::after {
+      width: 240px;
+      height: 240px;
+      border-color: rgba(240, 100, 36, 0.35);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .tool-icon {
+      display: grid;
+      width: 52px;
+      height: 52px;
+      place-items: center;
+      border-radius: 15px;
+      color: var(--orange-dark);
+      background: var(--orange-soft);
+    }
+
+    .featured .tool-icon {
+      color: var(--anthracite-950);
+      background: var(--orange);
+    }
+
+    .tool-icon svg {
+      width: 25px;
+      height: 25px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.9;
+    }
+
+    .tool-status {
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .featured .tool-status {
+      border-color: rgba(255, 255, 255, 0.14);
+      color: rgba(255, 255, 255, 0.58);
+    }
+
+    .card-body {
+      position: relative;
+      z-index: 1;
+      margin-top: auto;
+      padding-top: 46px;
+    }
+
+    .card-body h3 {
+      margin: 0;
+      font-size: 1.42rem;
+      letter-spacing: -0.035em;
+    }
+
+    .featured .card-body h3 {
+      font-size: clamp(1.65rem, 3vw, 2.25rem);
+    }
+
+    .card-body p {
+      max-width: 520px;
+      margin: 11px 0 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.65;
+    }
+
+    .featured .card-body p {
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      color: var(--orange-dark);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .featured .card-link {
+      color: var(--orange);
+    }
+
+    .card-link span {
+      transition: transform 180ms ease;
+    }
+
+    .tool-card:hover .card-link span {
+      transform: translateX(5px);
+    }
+
+    .coming-soon {
+      cursor: default;
+    }
+
+    .coming-soon:hover {
+      border-color: var(--line);
+      box-shadow: none;
+      transform: none;
+    }
+
+    .coming-soon .tool-icon {
+      color: var(--anthracite-700);
+      background: #e7e5df;
+    }
+
+    .coming-soon::after {
+      border-color: rgba(36, 36, 38, 0.05);
+    }
+
+    .site-footer {
+      color: rgba(255, 255, 255, 0.65);
+      background: var(--anthracite-950);
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 28px;
+      min-height: 118px;
+    }
+
+    .footer-copy {
+      margin: 0;
+      font-size: 0.86rem;
+    }
+
+    .footer-copy strong {
+      color: #fff;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.55);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.73rem;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      color: var(--orange);
+      outline: none;
+    }
+
+    @media (max-width: 850px) {
+      .tool-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .tool-card.featured {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(calc(100% - 28px), var(--content));
+      }
+
+      .nav-toggle {
+        display: grid;
+        place-items: center;
+      }
+
+      .site-nav {
+        position: absolute;
+        top: calc(100% + 1px);
+        right: 14px;
+        left: 14px;
+        display: none;
+        align-items: stretch;
+        flex-direction: column;
+        padding: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0 0 16px 16px;
+        background: var(--anthracite-900);
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+      }
+
+      .site-nav.open {
+        display: flex;
+      }
+
+      .site-nav .nav-cta {
+        margin: 4px 0 0;
+        text-align: center;
+      }
+
+      .hero::before {
+        right: -45vw;
+        bottom: -15%;
+        width: 110vw;
+      }
+
+      .hero::after {
+        display: none;
+      }
+
+      .section-heading {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding-block: 30px;
+      }
+
+      .footer-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .brand-name span {
+        display: none;
+      }
+
+      .tool-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tool-card,
+      .tool-card.featured {
+        grid-column: auto;
+        min-height: 280px;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.1rem, 17vw, 5rem);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="./" aria-label="Toolbox home">
+          <span class="brand-mark" aria-hidden="true">T</span>
+          <span class="brand-name">Toolbox <span>/ practical utilities</span></span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Open navigation">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" />
+          </svg>
+        </button>
+
+        <nav class="site-nav" id="main-navigation" aria-label="Main navigation">
+          <a href="#tools">Tools</a>
+          <a href="#about">About</a>
+          <a href="https://github.com/" rel="noreferrer">GitHub</a>
+          <a class="nav-cta" href="#tools">Open toolbox</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="about">
+        <div class="container">
+          <div class="hero-content">
+            <p class="eyebrow">Personal utility collection</p>
+            <h1>Small tools.<br /><em>Useful</em> results.</h1>
+            <p class="hero-copy">
+              A growing collection of focused web utilities for everyday tasks. No sprawling dashboards—just the right instrument when you need it.
+            </p>
+            <ul class="hero-meta" aria-label="Toolbox qualities">
+              <li>Runs in your browser</li>
+              <li>Fast and focused</li>
+              <li>More tools coming</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="tools-section" id="tools">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Inside the box</p>
+              <h2>Choose a tool</h2>
+            </div>
+            <p>
+              Each utility has its own focused workspace. Select a tile to leave the overview and open the tool.
+            </p>
+          </div>
+
+          <div class="tool-grid">
+            <a class="tool-card featured" href="./tool1/">
+              <div class="card-top">
+                <span class="tool-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 5h16v14H4zM8 9h8M8 13h5" />
+                  </svg>
+                </span>
+                <span class="tool-status">Ready</span>
+              </div>
+              <div class="card-body">
+                <h3>Text Workshop</h3>
+                <p>Clean, format, inspect, and transform text in one uncluttered workspace.</p>
+                <span class="card-link">Open tool <span aria-hidden="true">→</span></span>
+              </div>
+            </a>
+
+            <a class="tool-card" href="./tool2/">
+              <div class="card-top">
+                <span class="tool-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M5 19V9M12 19V5M19 19v-7" />
+                  </svg>
+                </span>
+                <span class="tool-status">Ready</span>
+              </div>
+              <div class="card-body">
+                <h3>Data Viewer</h3>
+                <p>Turn compact datasets into a clear, readable overview.</p>
+                <span class="card-link">Open tool <span aria-hidden="true">→</span></span>
+              </div>
+            </a>
+
+            <a class="tool-card" href="./tool3/">
+              <div class="card-top">
+                <span class="tool-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" />
+                  </svg>
+                </span>
+                <span class="tool-status">Ready</span>
+              </div>
+              <div class="card-body">
+                <h3>Quick Generator</h3>
+                <p>Create IDs, sample values, and useful snippets in seconds.</p>
+                <span class="card-link">Open tool <span aria-hidden="true">→</span></span>
+              </div>
+            </a>
+
+            <div class="tool-card coming-soon" aria-label="Another tool is coming soon">
+              <div class="card-top">
+                <span class="tool-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 8v4l2.5 2.5M5.6 5.6a9 9 0 1 1-1.7 2.5" />
+                  </svg>
+                </span>
+                <span class="tool-status">Soon</span>
+              </div>
+              <div class="card-body">
+                <h3>Next instrument</h3>
+                <p>A new practical utility is currently on the workbench.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="footer-copy"><strong>Toolbox</strong> — built for the small jobs that still need doing.</p>
+        <div class="footer-links">
+          <a href="#tools">All tools</a>
+          <a href="https://github.com/" rel="noreferrer">Source</a>
+          <a href="mailto:hello@example.com">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const navigation = document.querySelector('.site-nav');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = navigation.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+    });
+
+    navigation.addEventListener('click', (event) => {
+      if (event.target.matches('a')) {
+        navigation.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation');
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!navigation.contains(event.target) && !toggle.contains(event.target)) {
+        navigation.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation');
+      }
+    });
+  </script>
+</body>
 </html>
