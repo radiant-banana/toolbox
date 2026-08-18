@@ -1,1 +1,64 @@
-:root{--ink:#242426;--deep:#1d1d1f;--mid:#303033;--paper:#f4f3ef;--surface:#fffefa;--muted:#737176;--orange:#f06424;--orange2:#c94610;--soft:#ffd6c2;--green:#2c7358;--line:rgba(36,36,38,.14);--shadow:0 24px 60px rgba(29,29,31,.12);--body:Manrope,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",Consolas,monospace;--width:1180px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{min-height:100vh;margin:0;color:var(--ink);background:linear-gradient(rgba(36,36,38,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(36,36,38,.035) 1px,transparent 1px),var(--paper);background-size:32px 32px;font-family:var(--body);-webkit-font-smoothing:antialiased}a{color:inherit}.container{width:min(calc(100% - 40px),var(--width));margin-inline:auto}button,textarea{font:inherit}::selection{color:var(--deep);background:var(--soft)}@media(max-width:640px){.container{width:min(calc(100% - 28px),var(--width))}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+:root {
+  --ink: #242426;
+  --deep: #1d1d1f;
+  --mid: #303033;
+  --paper: #f4f3ef;
+  --surface: #fffefa;
+  --muted: #737176;
+  --orange: #f06424;
+  --orange2: #c94610;
+  --soft: #ffd6c2;
+  --green: #2c7358;
+  --line: rgba(36, 36, 38, 0.14);
+  --shadow: 0 24px 60px rgba(29, 29, 31, 0.12);
+  --body: Manrope, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', Consolas, monospace;
+  --width: 1180px;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  background: linear-gradient(rgba(36, 36, 38, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36, 36, 38, 0.035) 1px, transparent 1px), var(--paper);
+  background-size: 32px 32px;
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+a {
+  color: inherit;
+}
+.container {
+  width: min(calc(100% - 40px), var(--width));
+  margin-inline: auto;
+}
+button,
+textarea {
+  font: inherit;
+}
+::selection {
+  color: var(--deep);
+  background: var(--soft);
+}
+@media (max-width: 640px) {
+  .container {
+    width: min(calc(100% - 28px), var(--width));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -1,1 +1,31 @@
-import type{Metadata}from"next";import Link from"next/link";import{TextWorkshop}from"@/components/TextWorkshop";import s from"./page.module.css";export const metadata:Metadata={title:"Text Workshop",description:"Clean and inspect text locally in your browser."};export default function Page(){return <div className={s.page}><div className="container"><Link className={s.back} href="/">&lt;- Back to all tools</Link><section className={s.intro}><div><p>Tool 01 / Text utility</p><h1>Text Workshop</h1></div><span>Paste text, inspect its live statistics, and apply common transformations. Your draft is saved only in this browser.</span></section><TextWorkshop/></div></div>}
+import { TextWorkshop } from '@/components/TextWorkshop';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import s from './page.module.css';
+
+export const metadata: Metadata = {
+  title: 'Text Workshop',
+  description: 'Clean and inspect text locally in your browser.',
+};
+export default function Page() {
+  return (
+    <div className={s.page}>
+      <div className="container">
+        <Link className={s.back} href="/">
+          &lt;- Back to all tools
+        </Link>
+        <section className={s.intro}>
+          <div>
+            <p>Tool 01 / Text utility</p>
+            <h1>Text Workshop</h1>
+          </div>
+          <span>
+            Paste text, inspect its live statistics, and apply common transformations. Your draft is
+            saved only in this browser.
+          </span>
+        </section>
+        <TextWorkshop />
+      </div>
+    </div>
+  );
+}

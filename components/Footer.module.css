@@ -1,1 +1,40 @@
-.footer{color:rgba(255,255,255,.65);background:var(--deep)}.inner{display:grid;min-height:118px;grid-template-columns:1fr auto;align-items:center;gap:28px}.inner p{margin:0;font-size:.84rem}.inner strong{color:#fff}.inner div{display:flex;gap:20px}.inner a{color:rgba(255,255,255,.55);font:700 .7rem var(--mono);text-decoration:none}.inner a:hover{color:var(--orange)}@media(max-width:650px){.inner{grid-template-columns:1fr;gap:18px;padding-block:30px}.inner div{flex-wrap:wrap}}
+.footer {
+  color: rgba(255, 255, 255, 0.65);
+  background: var(--deep);
+}
+.inner {
+  display: grid;
+  min-height: 118px;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 28px;
+}
+.inner p {
+  margin: 0;
+  font-size: 0.84rem;
+}
+.inner strong {
+  color: #fff;
+}
+.inner div {
+  display: flex;
+  gap: 20px;
+}
+.inner a {
+  color: rgba(255, 255, 255, 0.55);
+  font: 700 0.7rem var(--mono);
+  text-decoration: none;
+}
+.inner a:hover {
+  color: var(--orange);
+}
+@media (max-width: 650px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-block: 30px;
+  }
+  .inner div {
+    flex-wrap: wrap;
+  }
+}

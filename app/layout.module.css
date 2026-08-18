@@ -1,1 +1,8 @@
-.shell{display:flex;min-height:100vh;flex-direction:column}.shell main{flex:1}
+.shell {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.shell main {
+  flex: 1;
+}
